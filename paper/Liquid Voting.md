@@ -9,3 +9,4 @@
   - self-tallying requirement
 
 - Questions
+  - In table 2, what is the bracket sequence?
