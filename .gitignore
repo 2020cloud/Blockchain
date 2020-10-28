@@ -1,2 +1,4 @@
 /paper/Liquid_voting/build
 *.out
+.vscode
+/build
