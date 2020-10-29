@@ -69,5 +69,20 @@ else:
     m = (l+r)/2 = 12
     lazy_2[2] = lazy_2[1] = 0
     lazy_2[3] = lazy_2[1]
+   
 ```
+
+
+
+### Process delegate message
+
+1. 假定用户x将投票权赋予用户y。
+
+2. 使用LCT维护当前所有的Delegate Tree。
+
+3. 检测x是否和y在同一棵树内，如果在同一棵树内，返回Delegate Failed。 检测步骤如下：
+   1. access(x) 的过程中检测y是否存在于其祖先路径上，如果在，表明在同一棵树内。
+   2. access(y)的过程中检测x是否存在于其祖先路径上，如果在，表明在同一棵树内。
+4. 如果x曾经有过delegate并且delegate(x) 不是y, 则cut(x, delegate(x))
+5. join(x, y)。
 
