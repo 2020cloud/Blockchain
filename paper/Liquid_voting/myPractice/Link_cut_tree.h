@@ -1,22 +1,30 @@
+/*
+https://www.bilibili.com/s/video/BV1G4411z7mN
+https://oi-wiki.org/ds/lct/
+https://www.luogu.com.cn/problem/solution/P3690
+https://www.zybuluo.com/xzyxzy/note/1027479
+*/ 
+
 #include <algorithm>
-#include <iostream>
+#include <cstdio>
 #include <cstring>
 #include <vector>
 using namespace std;
 const int maxn = 10010;
-struct Splay
+struct LCTree
 {
-    Splay(const int sz)
-    {
-        vector<int> tmp(sz, 0);
-        ch.emplace_back(sz, 0);
-        ch.emplace_back(sz, 0);
-        fa.resize(sz);
-        tag.resize(sz);
-    }
+    int ch[maxn][2], fa[maxn], tag[maxn];
+    // vector<int> fa, tag;
+    // vector<vector<int> > ch;
+    // LCTree(int sz){
+    //     fa.reserve(sz);
+    //     fa.assign(sz, -1);
+    //     tag.reserve(sz);
+    //     tag.assign(sz, 0);
+    //     ch.reserve(sz);
+    //     ch.assign(sz, vector<int>{0,0});
+    // }
 
-    vector<vector<int>> ch;
-    vector<int> fa, tag;
     void clear(int x) { ch[x][0] = ch[x][1] = fa[x] = tag[x] = 0; }
     int getch(int x) { return ch[fa[x]][1] == x; }
     int isroot(int x) { return ch[fa[x]][0] != x && ch[fa[x]][1] != x; }
@@ -48,62 +56,110 @@ struct Splay
         ch[x][chx ^ 1] = y;
         fa[y] = x;
     }
+
+    // 将x旋转至整个splay树的定点
     void splay(int x)
     {
         update(x);
-        for (int f = fa[x]; f = fa[x], !isroot(x); rotate(x))
+        int f;
+        // while 保证x一定可以旋转到根节点位置
+        while (!isroot(x))
+        {
+            f = fa[x];
             if (!isroot(f))
                 rotate(getch(x) == getch(f) ? f : x);
+            rotate(x);
+        }
     }
+    // 访问节点x，并且将根节点到x节点之间所有的路径变为实边
     void access(int x)
     {
-        for (int f = 0; x; f = x, x = fa[x])
-            splay(x), ch[x][1] = f;
+        for (int son = 0; x; son = x, x = fa[x])
+        {
+            splay(x);
+            // 这句代码将虚边变为实边，同时将最后一个点的右儿子变为0，即变为虚边
+            ch[x][1] = son;
+        }
     }
+    // 将原来的树中x节点作为根节点
     void makeroot(int x)
     {
         access(x);
         splay(x);
+        // 交换x的左孩子节点和右孩子节点
         swap(ch[x][0], ch[x][1]);
+        // 进行懒人标记，不再递归的进行翻转
         tag[x] ^= 1;
     }
-    int find(int x)
+
+    // 寻找x节点在原树的根节点
+    int findRoot(int x)
     {
         access(x);
         splay(x);
         while (ch[x][0])
+        {
+            pushdown(x);
             x = ch[x][0];
+        }
         splay(x);
         return x;
     }
+
+    // 将x和y之间建立连接
+    void link(int x, int y)
+    {
+        makeroot(x);
+        // 如果是同一个点，或者x和y已经连通，则跳过
+        if (x == y || findRoot(x) == findRoot(y))
+            return;
+        fa[x] = y;
+    }
+
+    // 断开x 和 y 之间的连接
+    void cut(int x, int y)
+    {
+        makeroot(x);
+        // 如果y和x不在一棵树上，或者x和y之间不邻接(y的父亲不是x 或者y有左儿子)，不进行cut
+        if (findRoot(y) != x || fa[y] != x || ch[y][0])
+            return;
+        fa[y] = ch[x][1] = 0;
+        update(x);
+    }
+
+    // 把x到y的路径拆出来
+    void split(int x, int y)
+    {
+        if (x == y || findRoot(x) != findRoot(y))
+            return;
+        makeroot(x);
+        access(y);
+        splay(y);
+    }
 };
 int n, q, x, y;
-string op;
+char op[maxn];
 int main()
 {
-    ios::sync_with_stdio(false);
-    cin >> n >> q;
-    Splay st(n);
+    scanf("%d%d", &n, &q);
     while (q--)
     {
-        cin >> op >> x >> y;
+        scanf("%s%d%d", op, &x, &y);
+        LCTree st;
         if (op[0] == 'Q')
         {
-            if (st.find(x) == st.find(y))
-                cout << "Yes\n";
+            if (st.findRoot(x) == st.findRoot(y))
+                printf("Yes\n");
             else
-                cout << "No\n";
+                printf("No\n");
         }
         if (op[0] == 'C')
-            if (st.find(x) != st.find(y))
-                st.makeroot(x), st.fa[x] = y;
+        {
+            st.link(x, y);
+        }
         if (op[0] == 'D')
         {
-            st.makeroot(x);
-            st.access(y);
-            st.splay(y);
-            if (st.ch[y][0] == x && !st.ch[x][1])
-                st.ch[y][0] = st.fa[x] = 0;
+            st.cut(x, y);
         }
     }
     return 0;
