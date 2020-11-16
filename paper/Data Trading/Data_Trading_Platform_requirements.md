@@ -9,3 +9,6 @@
   - Any one can not tamper with the running result.
   - The running result can not be obtained by any other except the buyer.
 
+- Privacy
+  - privacy of the buyers and the sellers.
+- Fairness?
