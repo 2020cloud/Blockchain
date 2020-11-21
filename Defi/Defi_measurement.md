@@ -104,15 +104,50 @@ white paper: https://www.airswap.io/pdfs/SwapWhitepaper.pdf
 
 
 
-###  DEX中可以测量的点
+###  DeFi中研究问题
 
-下列是一些我觉得可以测量的内容，这只是针对DEX，其他借贷类的DApp(Compound)以及聚合器(1inch)的了解我暂时不太多，因此暂时没有找到测量的点。
+- DEX的算法
+  - 方法介绍
+    - 订单薄的方法。
+    - 线上自动做市方法。
+    - 线下撮合，线上交易的方法。
+  - 方法对比
+    - 各种方法的对流动性池大小的敏感性(滑点大小问题)。
+    - 无常损失。
+    - 效率、安全。
+    - swap失败的比例对比，交易失败的情况有哪些？
+- DEX中的套利？
+  - 套利空间是如何产生的？交易所中的swap、Oracle错误报价、套利的机会多吗？
+  - 套利对于区块链的影响是什么？
+    - 对套利进行分析，平均每个区块中套利交易的次数是多少？每次套利所得是多少？
+    - 套利对区块链安全有什么影响？对矿工的行为的影响？
+    - 对Liquid Provider造成了什么影响？是否会打击Liquid Provider的积极性？
+    - 是不是造成Gas 费用增加和交易拥堵？
+  - 空手套白狼-Flash Loan
+    - Flash Loan对Defi生态带来的正面、负面影响。
+    - 警惕大的矿池与人合谋进行套利。
+- DeFi中的预言机
+  - 预言机架构分类
+    - 中心化式预言机
+    - 去中心化的预言机
+  - 预言机的安全性是如何保证的？
+  - 预言机的安全性对整个DEX的影响。
+- 整个Defi生态中的DApp对区块链安全带来的挑战是什么？
 
-- **滑点：DEX的做市算法、流动池大小对滑点的影响。**
-- **无偿损失**: **当前DEX中无偿损失有多少。**
-- **失败交易：当前DEX中失败交易的比例，引起交易失败的原因有哪些？**
-- **技术问题：当前DEX中面临的技术问题。**
-- **安全：当前DEX中的安全问题及其损失。**
+### Defi最新的论文
+
+- [2020年SP会议- Flash Boys 2.0 Frontrunning in Decentralized Exchanges, Miner Extractable Value, and Consensus Instability](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9152675)
+- [Arxiv-2020-03月上传-Attacking the Defi Ecosystem with Flash Loans for Fun and Profit](https://arxiv.org/pdf/2003.03810.pdf)
+- [Arxiv-2020年-05月-A First Look into Defi Oracles](https://arxiv.org/pdf/2005.04377.pdf)
+- [Arxiv-2020年10月23日上传-Towards Understanding Flash Loan and Its Applications in DeFi Ecosystem](https://arxiv.org/pdf/2010.12252.pdf)
+
+
+
+
+
+
+
+
 
 ### 一些链接
 
