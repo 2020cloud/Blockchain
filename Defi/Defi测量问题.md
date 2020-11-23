@@ -28,6 +28,54 @@
   - 预言机的安全性对整个DEX的影响。
 - 整个Defi生态中的DApp对区块链安全带来的挑战是什么？
 
+###  DeFi引发的安全挑战
+
+- DEX
+
+  - 方法介绍
+    - 订单薄的方法。
+    - 线上自动做市方法。
+    - 线下撮合，线上交易的方法。
+  - 方法对比
+    - 各种方法的对流动性池大小的敏感性(滑点大小问题)。
+    - 无常损失。
+    - 效率、安全。
+    - swap失败的比例对比，交易失败的情况有哪些？
+  - DEX中的套利
+    - 套利空间是如何产生的？交易所中的swap、Oracle错误报价、套利的机会多吗？
+    - 套利对于区块链的影响是什么？
+      - 对套利进行分析，平均每个区块中套利交易的次数是多少？每次套利所得是多少？
+      - 套利对区块链安全有什么影响？对矿工的行为的影响？
+      - 对Liquid Provider造成了什么影响？是否会打击Liquid Provider的积极性？
+      - 是不是造成Gas 费用增加和交易拥堵？
+    - 空手套白狼-Flash Loan
+      - Flash Loan对Defi生态带来的正面、负面影响。
+      - 警惕大的矿池与人合谋进行套利。
+
+- Oracle
+
+  - 预言机架构分类
+    - 中心化式预言机
+    - 去中心化的预言机
+  - 预言机的安全性是如何保证的？
+  - 预言机的安全性对整个DEX的影响。
+
+- DeFi中的骗局
+
+  - 利用代码漏洞制造的骗局
+
+    - [项目UniCats 在合约嵌入恶意函式，诓走「20万美元UNI」](https://www.blocktempo.com/vicious-defi-project-unicats-set-malicious-code-on-smart-contract/)
+    - [Uniswap 项目漏洞教程新骗局](https://www.anquanke.com/post/id/216188)
+    - [不断扩张的骗局，玷污了DeFi收益耕种市场](https://www.beekuaibao.com/article/767771852414103552)
+    - [从这轮DeFi起落中，我们学到了什么？](https://www.sohu.com/a/428068742_100217347)
+    - [我买了百倍币，却卖不出去](https://www.chainnews.com/articles/413317900427.htm)
+
+  - 监管缺失造成的骗局
+
+    - [DeFi骗局频发，翡翠、YFIII为什么可以骗到钱](https://www.zilian8.com/416698.html)
+
+      
+
 ### Defi最新的论文
 
 - [2020年SP会议- Flash Boys 2.0 Frontrunning in Decentralized Exchanges, Miner Extractable Value, and Consensus Instability](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9152675)
