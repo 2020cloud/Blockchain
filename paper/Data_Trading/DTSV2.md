@@ -1,15 +1,13 @@
 # Data Trading System Version2
 
-## 一个标准的数据服务交易系统
-
-### 参与角色
+### Roles
 
 - Buyer：拥有自己的数据分析算法，需要数据进行分析。
 - Seller：向Buyer提供数据分析服务。
 - 数据计算服务系统：结合Seller提供的原始数据和Buyer的算法，进行数据分析服务。
 - 结算系统: 负责Buyer和Seller的数据服务交易结算。
 
-### 系统特性
+### System Properties
 
 - 正确运行Buyer的算法，确保Buyer的算法不被篡改。
 - Buyer的数据分析结果不被泄露、篡改。
