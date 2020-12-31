@@ -50,7 +50,34 @@
 5. **应对策略：**Seller在出售数据计算服务时，会对数据进行分块，并对每一块对应的内容求取哈希值，然后将各哈希值上链。Buyer和数据计算服务中的enclave建立连接时，将数据块个数和各数据块的哈希值传输给enclave，enclave在读取Seller的数据后会求取哈希值并和Buyer提供的哈希值进行校验，如果不符合，则表明Seller提供了虚假的数据。
 6. **应对策略：**由于在本系统中，Buyer和Seller都可以单独验证，Seller和数据计算服务系统的合谋对执行程序或者执行结果的篡改可以被buyer检测到，Buyer即使和数据计算服务系统合谋也无法窃取Seller的数据，更不能赖账，因此本文的系统设计可以抵御上述攻击。
 
+### Challenge
+
+- Ref to Threat Model
 
 
 
+## SGX实验
+
+### 性能实验一
+
+- 选取4个典型的机器学习任务，分别在原始环境以及Enclave的环境下运行，比较性能下降的程度。
+
+- 任务可以是分别为: 1. Minist 手写图像识别 2. ResNet 3. GNN 4. 其他。
+
+- Minist
+  - https://blog.csdn.net/u010900574/article/details/106866527
+  - https://pytorch.apachecn.org/docs/1.0/cpp_frontend.html
+  - https://pytorch.org/cppdocs/installing.html
+
+### 性能实验二
+
+- blockchain的tps实验, 测试对交易的处理速度，是否会成为瓶颈。
+
+### 性能实验三
+
+- Seller对Buyer分析程序的静态隐私检查的额外性能开销
+
+### 性能实验四
+
+- local attestation 相比remote attestation的性能提升。
 
